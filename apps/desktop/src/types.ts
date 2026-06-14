@@ -5,6 +5,40 @@ export type AppSection =
   | "reviewCenter"
   | "settings";
 
+export type BoardColumn =
+  | "inbox"
+  | "evaluating"
+  | "recommended"
+  | "consider"
+  | "preparing"
+  | "needsReview"
+  | "ready"
+  | "applied"
+  | "interviewing"
+  | "offer"
+  | "rejected"
+  | "skipped"
+  | "archived";
+
+export type WorkspaceState =
+  | "created"
+  | "parsing"
+  | "parsed"
+  | "evaluatingStrategicFit"
+  | "evaluatingReadiness"
+  | "researching"
+  | "evaluated"
+  | "tailoringResume"
+  | "draftingArtifacts"
+  | "critiquing"
+  | "awaitingReview"
+  | "ready"
+  | "applied"
+  | "interviewing"
+  | "offer"
+  | "rejected"
+  | "archived";
+
 export interface AppInfo {
   name: string;
   version: string;
@@ -15,8 +49,8 @@ export interface WorkspaceSummary {
   id: string;
   title: string;
   company?: string;
-  column: string;
-  state: string;
+  column: BoardColumn;
+  state: WorkspaceState;
 }
 
 export const APP_SECTIONS: { id: AppSection; label: string }[] = [

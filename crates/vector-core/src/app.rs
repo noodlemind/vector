@@ -19,12 +19,8 @@ impl VectorApp {
     }
 
     pub async fn bootstrap_default() -> anyhow::Result<Self> {
-        let paths = if let Ok(root) = std::env::var("VECTOR_DATA_DIR") {
-            AppPaths::from_root(root)
-        } else {
-            AppPaths::default_for_current_os()?
-        };
-        Self::bootstrap(paths).await
+        let root = crate::config::data_dir_from_env()?;
+        Self::bootstrap(AppPaths::from_root(root)).await
     }
 
     pub fn info(&self) -> AppInfo {

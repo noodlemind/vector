@@ -40,3 +40,30 @@ pub struct ScoreResult {
     pub band_label: String,
     pub policy: PolicyVersion,
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn score_result_serializes_camel_case_fields() {
+        let value = ScoreResult {
+            value: 4.2,
+            max: 5.0,
+            band_label: "Apply".into(),
+            policy: PolicyVersion {
+                constitution_version: "2026-01".into(),
+                rubric_version: "1".into(),
+            },
+        };
+        let json = serde_json::to_value(value).expect("serialize");
+        assert_eq!(json["bandLabel"], "Apply");
+        assert_eq!(json["policy"]["rubricVersion"], "1");
+    }
+
+    #[test]
+    fn opportunity_decision_serializes_camel_case() {
+        let json = serde_json::to_value(OpportunityDecision::ConsiderCarefully).expect("serialize");
+        assert_eq!(json, "considerCarefully");
+    }
+}
