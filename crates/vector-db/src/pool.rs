@@ -58,10 +58,11 @@ mod tests {
         let db = Database::connect(&path).await.expect("connect");
         db.migrate().await.expect("migrate");
 
-        let version: (String,) = sqlx::query_as("SELECT value FROM app_meta WHERE key = 'schema_version'")
-            .fetch_one(db.pool())
-            .await
-            .expect("schema version row");
+        let version: (String,) =
+            sqlx::query_as("SELECT value FROM app_meta WHERE key = 'schema_version'")
+                .fetch_one(db.pool())
+                .await
+                .expect("schema version row");
 
         assert_eq!(version.0, "1");
     }
