@@ -19,6 +19,7 @@
       "type": "array",
       "items": {
         "type": "object",
+        "additionalProperties": false,
         "required": ["id", "source", "text"],
         "properties": {
           "id": { "type": "string" },

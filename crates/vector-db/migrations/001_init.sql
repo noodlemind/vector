@@ -21,8 +21,19 @@ CREATE TABLE IF NOT EXISTS job_workspace (
     id TEXT PRIMARY KEY NOT NULL,
     title TEXT NOT NULL,
     company TEXT,
-    board_column TEXT NOT NULL DEFAULT 'inbox',
-    workspace_state TEXT NOT NULL DEFAULT 'created',
+    board_column TEXT NOT NULL DEFAULT 'inbox'
+        CHECK (board_column IN (
+            'inbox', 'evaluating', 'recommended', 'consider', 'preparing',
+            'needsReview', 'ready', 'applied', 'interviewing', 'offer',
+            'rejected', 'skipped', 'archived'
+        )),
+    workspace_state TEXT NOT NULL DEFAULT 'created'
+        CHECK (workspace_state IN (
+            'created', 'parsing', 'parsed', 'evaluatingStrategicFit',
+            'evaluatingReadiness', 'researching', 'evaluated', 'tailoringResume',
+            'draftingArtifacts', 'critiquing', 'awaitingReview', 'ready',
+            'applied', 'interviewing', 'offer', 'rejected', 'archived'
+        )),
     created_at TEXT NOT NULL DEFAULT (datetime('now')),
     updated_at TEXT NOT NULL DEFAULT (datetime('now'))
 );
@@ -35,8 +46,13 @@ CREATE TABLE IF NOT EXISTS agent_run (
     id TEXT PRIMARY KEY NOT NULL,
     workspace_id TEXT,
     runtime_name TEXT,
-    task_type TEXT NOT NULL,
-    status TEXT NOT NULL DEFAULT 'queued',
+    task_type TEXT NOT NULL
+        CHECK (task_type IN (
+            'parseJob', 'evaluateStrategicFit', 'evaluateReadiness', 'research',
+            'tailorResume', 'draftArtifacts', 'critique'
+        )),
+    status TEXT NOT NULL DEFAULT 'queued'
+        CHECK (status IN ('queued', 'running', 'succeeded', 'failed', 'cancelled')),
     started_at TEXT,
     finished_at TEXT,
     created_at TEXT NOT NULL DEFAULT (datetime('now')),

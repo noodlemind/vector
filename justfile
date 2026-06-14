@@ -14,10 +14,12 @@ fmt:
 
 # Run all checks (Rust + frontend)
 check:
+    pnpm build
     cargo fmt --all -- --check
     cargo clippy --workspace --all-targets -- -D warnings
     cargo test --workspace
     pnpm check
+    pnpm lint
 
 # Build release desktop app
 build:
