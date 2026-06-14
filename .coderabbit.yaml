@@ -1,0 +1,51 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+language: "en-US"
+
+reviews:
+  profile: "chill"
+  high_level_summary: true
+  review_status: true
+  poem: false
+  auto_review:
+    enabled: true
+    drafts: false
+  path_instructions:
+    - path: "crates/vector-core/**"
+      instructions: |
+        - This is the authoritative Rust core; domain logic belongs here, not in the UI.
+        - Keep changes minimal and focused; match existing module boundaries.
+        - Prefer async patterns for I/O and agent work; never block the UI thread.
+        - Add tests when changing bootstrap, config, or persistence behavior.
+    - path: "crates/vector-db/**"
+      instructions: |
+        - Schema changes require a new SQLx migration; do not edit old migrations in place.
+        - Use WAL-friendly SQLite patterns and keep large artifacts off-database.
+    - path: "crates/vector-types/**"
+      instructions: |
+        - Shared types form the IPC contract between Rust core and the desktop UI.
+        - Preserve serde camelCase for frontend-facing types.
+    - path: "apps/desktop/src/**"
+      instructions: |
+        - React is a thin view over vector-core; avoid business logic in components.
+        - Maintain accessibility: semantic landmarks, keyboard navigation, focus-visible styles.
+        - Use Tailwind consistently; keep components small and readable.
+    - path: "apps/desktop/src-tauri/**"
+      instructions: |
+        - Tauri commands should delegate to vector-core and stay thin.
+        - Do not introduce blocking work on command handlers that should be async.
+    - path: "schemas/**"
+      instructions: |
+        - JSON schemas are versioned public contracts for agent/core interchange.
+        - Prefer backward-compatible schema changes with explicit version bumps.
+    - path: "docs/**"
+      instructions: |
+        - Public docs only; do not add internal roadmaps, vision docs, or planning notes.
+  knowledge_base:
+    code_guidelines:
+      enabled: true
+      filePatterns:
+        - "CONTRIBUTING.md"
+        - "docs/architecture.md"
+
+chat:
+  auto_reply: true
