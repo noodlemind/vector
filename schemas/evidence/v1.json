@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vector.dev/schemas/evidence/v1.json",
+  "title": "ExtractedEvidence",
+  "description": "Cited facts and requirement mappings produced by agents and validated by Vector core.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "workspaceId", "citations"],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "1"
+    },
+    "workspaceId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "citations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "source", "text"],
+        "properties": {
+          "id": { "type": "string" },
+          "source": { "type": "string" },
+          "text": { "type": "string" }
+        }
+      }
+    }
+  }
+}
