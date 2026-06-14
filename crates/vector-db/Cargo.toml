@@ -1,0 +1,19 @@
+[package]
+name = "vector-db"
+description = "SQLite persistence layer for Vector"
+publish = false
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+anyhow = { workspace = true }
+sqlx = { workspace = true, features = ["runtime-tokio", "sqlite", "migrate", "macros", "uuid", "chrono"] }
+tokio = { workspace = true }
+tracing = { workspace = true }
+uuid = { workspace = true }
+chrono = { workspace = true }
+vector-types = { workspace = true }
+
+[dev-dependencies]
+tempfile = "3"

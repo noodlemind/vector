@@ -1,0 +1,12 @@
+{
+  "name": "vector",
+  "private": true,
+  "packageManager": "pnpm@9.15.4",
+  "scripts": {
+    "dev": "pnpm --filter @vector/desktop tauri:dev",
+    "build": "pnpm --filter @vector/desktop build",
+    "check": "pnpm --filter @vector/desktop check",
+    "lint": "pnpm --filter @vector/desktop lint",
+    "fmt": "pnpm --filter @vector/desktop fmt"
+  }
+}

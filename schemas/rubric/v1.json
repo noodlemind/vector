@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vector.dev/schemas/rubric/v1.json",
+  "title": "Rubric",
+  "description": "Versioned scoring spec consumed deterministically by the Vector core.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "rubricVersion", "constitutionVersion", "dimensions"],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "1"
+    },
+    "rubricVersion": { "type": "string" },
+    "constitutionVersion": { "type": "string" },
+    "dimensions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "weight"],
+        "properties": {
+          "id": { "type": "string" },
+          "weight": { "type": "number", "minimum": 0, "maximum": 1 }
+        }
+      }
+    }
+  }
+}

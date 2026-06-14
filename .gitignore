@@ -1,0 +1,50 @@
+# Conductor / internal workspace artifacts
+.context/
+
+# Internal planning (never commit)
+docs/internal/
+plans/
+roadmap/
+*.local.md
+
+# Rust
+/target/
+**/*.rs.bk
+
+# Node / frontend
+node_modules/
+dist/
+apps/desktop/dist/
+.pnpm-store/
+*.tsbuildinfo
+
+# Tauri
+apps/desktop/src-tauri/target/
+apps/desktop/src-tauri/gen/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Test / coverage
+coverage/
+*.profraw
+
+# Local app data (dev)
+.vector/
