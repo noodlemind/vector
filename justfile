@@ -20,6 +20,7 @@ check:
     cargo test --workspace
     pnpm check
     pnpm lint
+    pnpm --filter @vector/desktop test
 
 # Build release desktop app
 build:
