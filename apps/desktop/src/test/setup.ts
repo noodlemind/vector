@@ -16,8 +16,8 @@ if (!window.matchMedia) {
   }));
 }
 
-// jsdom's localStorage isn't available in this environment, and the bare global
-// falls through to Node's experimental localStorage (which warns). Stub a small
+// jsdom doesn't expose window.localStorage under this env's config, and the bare
+// global resolves to Node's experimental Web Storage (which warns). Stub a small
 // in-memory store so theme-persistence tests run cleanly and quietly.
 function createMemoryStorage(): Storage {
   const store = new Map<string, string>();

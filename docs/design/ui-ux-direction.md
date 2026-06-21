@@ -125,5 +125,3 @@ Gradients (body backdrop / window) and shadows are themed alongside: dark uses d
 ## Status
 
 This is the **locked UI/UX direction**. The home surface is the approved reference.
-
-Next (separate, planned work): wire the token system into `apps/desktop/src/index.css` with light-theme support, then build the remaining surfaces to this spec — Application Workspace, the two gates, Profile Vault, Review Center — each keyboard-navigable and screen-reader-friendly as it ships.
