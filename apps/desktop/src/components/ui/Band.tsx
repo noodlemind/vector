@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
+import type { BandTone } from "../../lib/tones";
 
-export type BandTone = "good" | "neutral";
+export type { BandTone };
 
 const toneClasses: Record<BandTone, string> = {
   good: "text-good bg-good-soft border-good-border",

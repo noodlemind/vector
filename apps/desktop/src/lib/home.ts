@@ -1,4 +1,4 @@
-import type { BandTone } from "../components/ui/Band";
+import type { BandTone } from "./tones";
 
 export type NeedKind = "decide" | "review" | "record";
 
