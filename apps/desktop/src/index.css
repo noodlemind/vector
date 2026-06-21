@@ -1,28 +1,59 @@
 @import "tailwindcss";
 
+/* ---- Design tokens — dark (default). Names map doc token `text` -> `foreground`. ---- */
 @theme {
   --color-surface: #0f1117;
   --color-surface-raised: #171a22;
   --color-border: #2a2f3a;
+  --color-border-faint: #20242e;
+  --color-foreground: #e9ecf3;
   --color-muted: #8b93a7;
+  --color-muted-dim: #5b6273;
   --color-accent: #6ea8fe;
   --color-accent-soft: #1e3a5f;
+  --color-good: #7fd1a8;
+  --color-good-soft: #16301f;
+  --color-good-border: #244a34;
+  --color-separator: #343a47;
+  --color-lights: #2c313c;
+
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ---- Light theme: override the same tokens ---- */
+:root[data-theme="light"] {
+  --color-surface: #ffffff;
+  --color-surface-raised: #f5f7fa;
+  --color-border: #e1e5ec;
+  --color-border-faint: #eef0f4;
+  --color-foreground: #1b1e26;
+  --color-muted: #5f6675;
+  --color-muted-dim: #9aa1b0;
+  --color-accent: #2f6fe0;
+  --color-accent-soft: #e6effd;
+  --color-good: #1c8a5a;
+  --color-good-soft: #e3f3ea;
+  --color-good-border: #bfe3cd;
+  --color-separator: #cdd2dc;
+  --color-lights: #d4d8e0;
 }
 
 @layer base {
   html {
     @apply h-full antialiased;
   }
-
   body {
-    @apply m-0 h-full bg-surface font-sans text-zinc-100;
+    @apply m-0 h-full bg-surface font-sans text-foreground;
+    background-image: radial-gradient(
+      1200px 700px at 50% -10%,
+      color-mix(in srgb, var(--color-accent) 7%, var(--color-surface)) 0%,
+      var(--color-surface) 60%
+    );
+    transition: background-color 240ms ease, color 240ms ease;
   }
-
   #root {
     @apply h-full;
   }
-
   :focus-visible {
     @apply outline-2 outline-offset-2 outline-accent;
   }

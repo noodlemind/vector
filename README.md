@@ -64,7 +64,8 @@ crates/vector-types/ Shared domain types
 schemas/             Versioned JSON schemas
 ```
 
-See [docs/architecture.md](docs/architecture.md) for a high-level overview.
+See [docs/architecture.md](docs/architecture.md) for a high-level overview, and
+[docs/design/design-system.md](docs/design/design-system.md) for the UI design system.
 
 ## Contributing
 
